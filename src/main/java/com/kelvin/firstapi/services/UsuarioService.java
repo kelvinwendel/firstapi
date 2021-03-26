@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kelvin.firstapi.domain.Usuario;
 import com.kelvin.firstapi.repositories.UsuarioRepository;
+import com.kelvin.firstapi.services.exceptions.ObjectNotFoundException;
 
 /**
  * Classe que representa os serviços de usuários.
@@ -26,6 +27,7 @@ public class UsuarioService {
 	 */
 	public Usuario findByID(Long id) {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
-		return usuario.orElse(null);
+		return usuario.orElseThrow(() -> new ObjectNotFoundException("Objeto de ID: " + id + " não encontrado!, "
+				+ "Tipo: " + Usuario.class.getName()));
 	}
 }
