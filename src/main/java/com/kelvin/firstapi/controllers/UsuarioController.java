@@ -1,5 +1,6 @@
 package com.kelvin.firstapi.controllers;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +33,17 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> findByID(@PathVariable Long id) {
 		Usuario usuario = usuarioService.findByID(id);
 		return ResponseEntity.ok().body(usuario);
+	}
+
+	/**
+	 * Busca por todos os usuários cadastrados.
+	 *
+	 * @return
+	 *   {@code ResponseEntity<List<Usuario>>} contendo todos os usuários cadastrados.
+	 */
+	@GetMapping
+	public ResponseEntity<List<Usuario>> findAll(){
+		List<Usuario> usuarios = usuarioService.findAll();
+		return ResponseEntity.ok().body(usuarios);
 	}
 }

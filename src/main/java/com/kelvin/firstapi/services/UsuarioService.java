@@ -1,5 +1,6 @@
 package com.kelvin.firstapi.services;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,15 @@ public class UsuarioService {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		return usuario.orElseThrow(() -> new ObjectNotFoundException("Objeto de ID: " + id + " não encontrado!, "
 				+ "Tipo: " + Usuario.class.getName()));
+	}
+
+	/**
+	 * Busca por todos os usuários cadastrados.
+	 *
+	 * @return
+	 *   {@code List<Usuario>} contendo todos os registros cadastrados.
+	 */
+	public List<Usuario> findAll(){
+		return usuarioRepository.findAll();
 	}
 }
