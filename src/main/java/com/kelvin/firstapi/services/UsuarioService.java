@@ -41,4 +41,24 @@ public class UsuarioService {
 	public List<Usuario> findAll(){
 		return usuarioRepository.findAll();
 	}
+
+	/**
+	 * Atualiza as informações do usuário especificado.
+	 *
+	 * @param id
+	 *   ID do usuário a ser atualizado.
+	 * @param usuarioAtualizado
+	 *   Usuário com os devidos valores atualizados.
+	 *
+	 * @return
+	 *   {@code Usuario} que foi atualizado.
+	 */
+	public Usuario update(Long id, Usuario usuarioAtualizado) {
+		Usuario usuario = findByID(id);
+		usuario.setLogin(usuarioAtualizado.getLogin());
+		usuario.setNome(usuarioAtualizado.getNome());
+		usuario.setSenha(usuarioAtualizado.getSenha());
+
+		return usuarioRepository.save(usuario);
+	}
 }
