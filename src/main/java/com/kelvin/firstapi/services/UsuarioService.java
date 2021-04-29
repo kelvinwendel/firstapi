@@ -61,4 +61,19 @@ public class UsuarioService {
 
 		return usuarioRepository.save(usuario);
 	}
+
+	/**
+	 * Persiste o usuário recebido da requisição na base de dados.
+	 *
+	 * @param usuarioCriado
+	 *   Usuário criado obtido do corpo da requisição.
+	 *
+	 * @return
+	 *   {@code Usuario} que foi criado.
+	 */
+	public Usuario create(Usuario usuarioCriado) {
+		// Seto o valor nulo para garantir a criação e evitar um update caso informado um ID existente.
+		usuarioCriado.setId(null);
+		return usuarioRepository.save(usuarioCriado);
+	}
 }
